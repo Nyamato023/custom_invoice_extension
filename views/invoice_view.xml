@@ -17,6 +17,7 @@
 					<field name="unit_price" />
 					<field name="total_price" readonly="1" />
 				</group>
+				<button name="action_view_past_readings" type="object" string="View Reading History" class="btn-primary" />
 			</xpath>
 		</field>
 	</record>
