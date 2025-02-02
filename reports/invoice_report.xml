@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+		<xpath expr="//table[@class='table table-sm o_invoice_print']" position="before">
+			<table class="table table-sm o_invoice_print">
+				<thead>
+					<tr>
+						<th>
+							Previous
+						</th>
+						<th>
+							New
+						</th>
+						<th>
+							Actual
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td t-esc="o.previous_reading" />
+						<td t-esc="o.new_reading" />
+						<td t-esc="o.actual_usage" />
+					</tr>
+				</tbody>
+			</table>
+		</xpath>
+	</template>
+</odoo>
