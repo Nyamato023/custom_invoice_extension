@@ -25,3 +25,6 @@ This module extends the Odoo Accounting module by adding:
 
 ## Dependencies
 - Odoo Accounting Module
+
+## Github Repo:
+[Nyamato023](https://github.com/Nyamato023/custom_invoice_extension.git)
