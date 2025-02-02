@@ -6,7 +6,7 @@ This module extends the Odoo Accounting module by adding:
 - Meter reading history
 - Warning system for abnormal usage
 
-1. Copy `custom_invoice_extension` to your Odoo addons directory:
+1. After extracting the .zip file Copy `custom_invoice_extension` folder to your Odoo addons directory:
    ```bash
    cp -r custom_invoice_extension /path/to/odoo/addons/
    ```
