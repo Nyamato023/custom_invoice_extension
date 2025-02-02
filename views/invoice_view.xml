@@ -14,6 +14,8 @@
 					<field name="previous_reading" />
 					<field name="new_reading" />
 					<field name="actual_usage" />
+					<field name="unit_price" />
+					<field name="total_price" readonly="1" />
 				</group>
 			</xpath>
 		</field>

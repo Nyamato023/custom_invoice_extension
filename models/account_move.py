@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class AccountMove(models.Model):
@@ -9,8 +9,38 @@ class AccountMove(models.Model):
     actual_usage = fields.Float(
         string="Actual Usage", compute="_compute_actual_usage", store=True
     )
+    unit_price = fields.Float(string="Unit Price", default=10.0)
+    total_price = fields.Float(
+        string="Total Price", compute="_compute_total_price", store=True
+    )
 
     @api.depends("previous_reading", "new_reading")
     def _compute_actual_usage(self):
         for record in self:
             record.actual_usage = record.new_reading - record.previous_reading
+
+    @api.depends("actual_usage", "unit_price")
+    def _compute_total_price(self):
+        for record in self:
+            record.total_price = (
+                record.actual_usage * record.unit_price if record.actual_usage else 0.0
+            )
+
+    def action_view_past_readings(self):
+        return {
+            "name": "Meter Reading History",
+            "type": "ir.actions.act_window",
+            "res_model": "account.move",
+            "view_mode": "tree,form",
+            "domain": [("partner_id", "=", self.partner_id.id)],
+        }
+
+    @api.constrains("actual_usage")
+    def _check_usage_limit(self):
+        for record in self:
+            if record.actual_usage < 0:
+                raise ValidationError(
+                    "The new reading cannot be lower than the previous reading!"
+                )
+            elif record.actual_usage > 1000:
+                raise ValidationError("Warning: Unusually high meter reading detected!")
