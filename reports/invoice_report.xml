@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-	<!-- Inherit the invoice report template -->
+	<!-- Inherit the invoice line template -->
 	<template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
 		<!-- Insert a table before the existing invoice details -->
 		<xpath expr="//table[@class='table table-sm o_invoice_print']" position="before">
@@ -26,12 +26,12 @@
 				</thead>
 				<tbody>
 					<tr>
-						<!-- Display meter reading details dynamically -->
-						<td t-esc="o.previous_reading" />
-						<td t-esc="o.new_reading" />
-						<td t-esc="o.actual_usage" />
-						<td t-esc="o.unit_price" />
-						<td t-esc="o.total_price" />
+						<!-- Display meter reading details dynamically from account.move.line -->
+						<td t-esc="line.previous_reading" />
+						<td t-esc="line.new_reading" />
+						<td t-esc="line.actual_usage" />
+						<td t-esc="line.unit_price" />
+						<td t-esc="line.total_price" />
 					</tr>
 				</tbody>
 			</table>

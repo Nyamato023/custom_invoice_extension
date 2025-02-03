@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-	<!-- Inherit the account move form view -->
-	<record id="view_move_form_inherited" model="ir.ui.view">
+	<!-- Inherit the account move line form view -->
+	<record id="view_move_line_form_inherited" model="ir.ui.view">
 		<field name="name">
-			account.move.form.inherited
+			account.move.line.form.inherited
 		</field>
 		<field name="model">
-			account.move
+			account.move.line
 		</field>
-		<field name="inherit_id" ref="account.view_move_form" />
+		<field name="inherit_id" ref="account.view_move_line_form" />
 		<field name="arch" type="xml">
-			<!-- Add custom fields and button after invoice line items -->
-			<xpath expr="//field[@name='invoice_line_ids']" position="after">
-				<group>
-					<field name="previous_reading" />
-					<field name="new_reading" />
-					<field name="actual_usage" />
-					<field name="unit_price" />
-					<field name="total_price" readonly="1" />
-				</group>
-				<!-- Button to view past readings -->
-				<button name="action_view_past_readings" type="object" string="View Reading History" class="btn-primary" />
+			<!-- Add custom fields after existing ones -->
+			<xpath expr="//field[@name='quantity']" position="after">
+				<field name="previous_reading" />
+				<field name="new_reading" />
+				<field name="actual_usage" />
+				<field name="unit_price" />
+				<field name="total_price" readonly="1" />
 			</xpath>
 		</field>
 	</record>
